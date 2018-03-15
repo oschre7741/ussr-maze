@@ -119,8 +119,8 @@ def setup():
     coin13 = [650, 350, 25, 25]
 
     coins = [coin1, coin2, coin3, coin4, coin5,
-             coin6, coin7, coin8, coin9, coin10, coin11,
-             coin12, coin13]
+             coin6, coin7, coin8, coin9, coin10,
+             coin11, coin12, coin13]
 
     # Make vodka
     vodka1 = [750, 250, 25, 25]
@@ -205,7 +205,6 @@ while not done:
             else:
                 vel2[1] = 0
 
-
             #player 3
             if key4:
                 vel3[0] = -player3_speed
@@ -237,18 +236,19 @@ while not done:
 
         ''' resolve collisions horizontally '''
         for w in walls:
+            #player1 
             if intersects.rect_rect(player1, w):        
                 if vel1[0] > 0:
                     player1[0] = w[0] - player1[2]
                 elif vel1[0] < 0:
                     player1[0] = w[0] + w[2]
-
+            #player2
             if intersects.rect_rect(player2, w):
                 if vel2[0] > 0:
                     player2[0] = w[0] - player2[2]
                 elif vel2[0] < 0:
                     player2[0] = w[0] + w[2]
-
+            #player3
             if intersects.rect_rect(player3, w):
                 if vel3[0] > 0:
                     player3[0] = w[0] - player3[2]
@@ -262,18 +262,19 @@ while not done:
         
         ''' resolve collisions vertically '''
         for w in walls:
+            #player1
             if intersects.rect_rect(player1, w):                    
                 if vel1[1] > 0:
                     player1[1] = w[1] - player1[3]
                 if vel1[1]< 0:
                     player1[1] = w[1] + w[3]
-                    
+            #player2        
             if intersects.rect_rect(player2, w):
                 if vel2[1] > 0:
                     player2[1] = w[1] - player2[3]
                 if vel2[1]< 0:
                     player2[1] = w[1] + w[3]
-
+            #player3
             if intersects.rect_rect(player3, w):
                 if vel3[1] > 0:
                     player3[1] = w[1] - player3[3]
