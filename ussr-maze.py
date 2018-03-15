@@ -330,19 +330,6 @@ while not done:
         elif bottom3 > HEIGHT:
             player3[1] = HEIGHT - player3[3]
 
-        ''' player collision '''
-        if intersects.rect_rect(player1, player2):
-            score1 -= 1
-            score2 -=1
-
-        if intersects.rect_rect(player2, player3):
-            score2 -= 1
-            score3 -= 1
-
-        if intersects.rect_rect(player3, player1):
-            score3 -= 1
-            score1 -= 1
-
         ''' get the coins '''
         hit_list = []
 
@@ -399,17 +386,23 @@ while not done:
         for hit in hit_list4:
             vodka.remove(hit)
             score1 -= 1
+            player1_speed -= 1
             vodkasound.play()
 
         for hit in hit_list5:
             vodka.remove(hit)
             score2 -= 1
+            player2_speed -= 1
             vodkasound.play()
 
         for hit in hit_list6:
             vodka.remove(hit)
             score3 -= 1
+            player3_speed -= 1
             vodkasound.play()
+
+        if player1_speed == 0 and player2_speed == 0 and player3_speed == 0:
+            stage = END
 
         ''' timer stuff '''
         if stage == PLAYING:
