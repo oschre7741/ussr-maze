@@ -30,23 +30,22 @@ GRAY = (150, 150, 150)
 
 font = pygame.font.Font(None, 48)
 
-#images
+# Images
 startscreen = pygame.image.load("images/background.png")
 endscreen = pygame.image.load("images/endscreen.png")
 background = pygame.image.load("images/flag.png")
 coin = pygame.image.load("images/coin.png")
 vodkapic = pygame.image.load("images/vodka.png")
 
-#sounds
-coinsound = pygame.mixer.Sound("sounds/boo.wav")
+# Sounds
+coinsound = pygame.mixer.Sound("sounds/applause.wav")
 vodkasound = pygame.mixer.Sound("sounds/grunt.wav")
 pygame.mixer.music.load("sounds/anthem.ogg")
 
-# stages
+# Stages
 START = 0
 PLAYING = 1
 END = 2
-
 
 def setup():
     global player1, player2, player3, vel1, vel2, vel3, player1_speed, player2_speed, player3_speed, score1, score2, score3, stage, time_remaining, ticks, walls, coins, vodka
@@ -70,7 +69,7 @@ def setup():
     time_remaining = 25
     ticks = 0
 
-    # make walls
+    # Make walls
     wall1 =  [50, 0, 700, 25]
     wall2 =  [50, 575, 775, 25]
     wall3 =  [0, 0, 25, 600]
@@ -175,7 +174,7 @@ while not done:
             key4 = pressed[pygame.K_KP4]
             key6 = pressed[pygame.K_KP6]
 
-            #player1
+            # player1
             if left:
                 vel1[0] = -player1_speed
             elif right:
@@ -190,7 +189,7 @@ while not done:
             else:
                 vel1[1] = 0
 
-            #player2
+            # player2
             if a:
                 vel2[0] = -player2_speed
             elif d:
@@ -205,7 +204,7 @@ while not done:
             else:
                 vel2[1] = 0
 
-            #player 3
+            # player 3
             if key4:
                 vel3[0] = -player3_speed
             elif key6:
@@ -225,8 +224,7 @@ while not done:
                 if event.key == pygame.K_r:
                     setup()
 
-            
-                        
+                      
     # Game logic (Check for collisions, update points, etc.)
     ''' move the player in horizontal direction '''
     if stage == PLAYING:
@@ -236,19 +234,19 @@ while not done:
 
         ''' resolve collisions horizontally '''
         for w in walls:
-            #player1 
+            # player1 
             if intersects.rect_rect(player1, w):        
                 if vel1[0] > 0:
                     player1[0] = w[0] - player1[2]
                 elif vel1[0] < 0:
                     player1[0] = w[0] + w[2]
-            #player2
+            # player2
             if intersects.rect_rect(player2, w):
                 if vel2[0] > 0:
                     player2[0] = w[0] - player2[2]
                 elif vel2[0] < 0:
                     player2[0] = w[0] + w[2]
-            #player3
+            # player3
             if intersects.rect_rect(player3, w):
                 if vel3[0] > 0:
                     player3[0] = w[0] - player3[2]
@@ -262,19 +260,19 @@ while not done:
         
         ''' resolve collisions vertically '''
         for w in walls:
-            #player1
+            # player1
             if intersects.rect_rect(player1, w):                    
                 if vel1[1] > 0:
                     player1[1] = w[1] - player1[3]
                 if vel1[1]< 0:
                     player1[1] = w[1] + w[3]
-            #player2        
+            # player2        
             if intersects.rect_rect(player2, w):
                 if vel2[1] > 0:
                     player2[1] = w[1] - player2[3]
                 if vel2[1]< 0:
                     player2[1] = w[1] + w[3]
-            #player3
+            # player3
             if intersects.rect_rect(player3, w):
                 if vel3[1] > 0:
                     player3[1] = w[1] - player3[3]
@@ -298,7 +296,7 @@ while not done:
         top3 = player3[1]
         bottom3 = player3[1] + player3[3]
         
-        #player1
+        # player1
         if left1 < 0:
             player1[0] = 0
         elif right1 > WIDTH:
@@ -309,7 +307,7 @@ while not done:
         elif bottom1 > HEIGHT:
             player1[1] = HEIGHT - player1[3]
             
-        #player2
+        # player2
         if left2 < 0:
             player2[0] = 0
         elif right2 > WIDTH:
@@ -320,7 +318,7 @@ while not done:
         elif bottom2 > HEIGHT:
             player2[1] = HEIGHT - player2[3]
             
-        #player3
+        # player3
         if left3 < 0:
             player3[0] = 0
         elif right3 > WIDTH:
@@ -416,7 +414,6 @@ while not done:
                 stage = END
 
         
-        
     # Drawing code (Describe the picture. It isn't actually drawn yet.)
     screen.blit(background, (0, 0))
     
@@ -432,15 +429,15 @@ while not done:
     timer_text = font.render(str(time_remaining), True, WHITE)
     screen.blit(timer_text, [400, 10])
 
-    '''coins '''
+    ''' coins '''
     for c in coins:
         screen.blit(coin, c)
 
-    '''vodka '''
+    ''' vodka '''
     for v in vodka:
         screen.blit(vodkapic, v)
 
-    '''x to quit'''
+    ''' x to quit'''
     text1 = font.render("(Press X to quit)", True, WHITE)
     screen.blit(text1, [525, 550])
     
@@ -453,7 +450,7 @@ while not done:
         screen.blit(text2, [100, 100])
         screen.blit(text3, [525, 550])
     elif stage == END:
-        #screen.blit(endscreen, (0, 0))
+        screen.blit(endscreen, (0, 0))
         text1 = font.render("Player 1: " + str(score1) , 1, WHITE)
         text2 = font.render("Player 2: " + str(score2) , 1, WHITE)
         text3 = font.render("Player 3: " + str(score3) , 1, WHITE)
