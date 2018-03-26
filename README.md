@@ -1,11 +1,11 @@
 # user controls
-Player 1:
+Player 1(white):
 To move - arrow keys
 
-Player 2:
+Player 2(black):
 To move - WASD
 
-Player 3:
+Player 3(grey):
 To move - keypad(8, 4, 2, 6)
 
 # Settings
